@@ -1,13 +1,14 @@
-const urlGetMovies = 'http://localhost:8080/movie';
+const urlGetMovies = 'http://192.168.1.14:8080/movie';
 
 function* getMoviesFromApi() {
+    console.log("aaa");
     const response = yield fetch(urlGetMovies, {
         method : 'GET',
         body: '',
-    });
+    }).then(response => response.json());
 
-    const movies = yield response.status === 200? JSON.parse(response._bodyInit): [];
-    return movies;
+
+    return response;
 }
 
 export const Api = { getMoviesFromApi};

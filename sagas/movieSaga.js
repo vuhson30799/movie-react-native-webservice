@@ -3,19 +3,17 @@ import {FETCH_MOVIES,FETCH_FAILED,FETCH_SUCCEEDED} from "../actions/actionTypes"
 import {put,takeLatest} from 'redux-saga/effects';
 import {Api} from "./api";
 
-function* fetchMovies() {
-    console.log("hello");
-    try {
-        const receivedMovies = Api.getMoviesFromApi();
-        yield put({type:FETCH_SUCCEEDED, receivedMovies: receivedMovies});
-        console.log(receivedMovies[0].name);
-        console.log(receivedMovies[1].releaseYear);
-        console.log("this is try");
-        console.log("This is try bro")
 
+function* fetchMovies() {
+    try {
+        const response = yield Api.getMoviesFromApi();
+
+        yield put({type:FETCH_SUCCEEDED, receivedMovies: response});
+
+        console.log(response);
     }catch (error) {
-        yield put({type:FETCH_FAILED,error})
-        console.log("Hi");
+        yield put({type:FETCH_FAILED,error});
+        console.log(error);
     }
 }
 export function* watchFetchMovies() {
