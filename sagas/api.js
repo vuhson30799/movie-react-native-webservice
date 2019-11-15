@@ -1,4 +1,4 @@
-const urlGetMovies = 'http://192.168.1.14:8080/movie';
+const urlGetMovies = 'http://164.132.226.137:9999/youtuber/feeds/searchByCommunityName?name=football4';
 
 function* getMoviesFromApi() {
     console.log("aaa");
@@ -8,7 +8,7 @@ function* getMoviesFromApi() {
     }).then(response => response.json());
 
 
-    return response;
+    return yield (response);
 }
 
 export const Api = { getMoviesFromApi};

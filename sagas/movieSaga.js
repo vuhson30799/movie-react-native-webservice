@@ -8,12 +8,10 @@ function* fetchMovies() {
     try {
         const response = yield Api.getMoviesFromApi();
 
-        yield put({type:FETCH_SUCCEEDED, receivedMovies: response});
+        yield put({type:FETCH_SUCCEEDED, receivedMovies: response.content});
 
-        console.log(response);
     }catch (error) {
         yield put({type:FETCH_FAILED,error});
-        console.log(error);
     }
 }
 export function* watchFetchMovies() {
